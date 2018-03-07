@@ -108,17 +108,29 @@ Service in CoreModule verlagern, das nur im AppModule geladen wird.
 
 Nachteil: Auflösen der Kapselung!
 
-2. Lösung:
+2. Lösung, analog zum Router-Module - eine forRoot-Methode:
 
-static forRoot: ModuleWithProviders {
-    return {
-        ngModule: SharedModule,
-        providers: [AdditionalServices, ...]
+```ts
+@NgModule({
+    ...
+    providers: [...]
+})
+export class MyModule {
+
+    static forRoot: ModuleWithProviders {
+        return {
+            ngModule: SharedModule,
+            providers: [AdditionalServices, ...]
+        }
     }
 }
+```
 
 
 ## Preloading
 
 Im Hintergrund laden nach dem Initialen Laden der Main Component.
 
+```ts
+RouterModule.forRoot(APP_ROUTES, {preloadingStrategy: PreloadAllModules})
+```
