@@ -207,5 +207,59 @@ Beispiel:
 {{tp.name}}
 ```
 
+### Kommunikation zwischen Komponenten
+
+#### Subjects
+
+Analog zu Observables, aber mit "Einwurftrichter" - d.h. eher eine Queue.
+
+* Subject - verteilt daten an alle aktuell angemeldeten "Observer" (= TV-Sendung)
+* BehaviorSubject - speichert letzten Datensatz (= Mediathek)
+* ReplaySubject - speichert mehrere/alle Daten (= Videoportal) - per Konstruktorparameter konfigurierbar
 
 
+## dynamische Formulare
+
+NgForm --> controls --> Control
+
+### zur Laufzeit erzeugen
+
+benötigt: ReactiveFormsModule
+
+1. Aufbau mit new: FormGroup enhält [FormControl | FormGroup]*
+2. FormControl mit Validatoren versorgen 
+
+oder
+
+Aufbau mit FormBuilder
+
+.ValueChanges-Observable an FormControl und FormGroup
+
+### Ziel
+Metadaten-Struktur, die sowohl die Erzeugung im Code als auch die HTML-Erzeugung über ngBinding steuert
+
+
+## WebPack
+
+defacto Standard; von Fürther Entw. als Tool für eigene Masterarbeit gebaut
+
+spezielle Loader, die abh. vom Dateityp Umwandlungen in andere Formate erledigen, die dann in den packages landen
+
+Angular cli macht dynamisch was webpack sonst per Config übergeben bekommt - um aus den aktuellen Einstellungen im Projekt zu einer webpack-config zu kommen gibt es einen CLI-Befehl:
+```
+ng eject
+```
+
+## i18n
+
+### Angular Compiler
+
+Eine Programmversion pro Sprache
+
+### ngx-translate
+
+JSON-Dateien mit IDS und Texten
+
+```
+new TranslateStaticLoader(http, './i18n', '.json');
+```
